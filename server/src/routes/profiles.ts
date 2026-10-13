@@ -4,7 +4,8 @@ import { badRequest, conflict, notFound, ok, wrap } from '../lib/http.js';
 import { createLogger } from '../lib/log.js';
 import { requireProvider } from '../providers/registry.js';
 import { clientFor, createConnection, getConnection, listConnections, localConnectionId } from '../providers/connections.js';
-import { ACCOUNT_FILE, authVerifierFor, getAccount, listAccounts, newProfileId, putAccount, readVault, removeAccount, storageFor, writeVault, VAULT_FILE } from '../vault/store.js';
+import { parentPath } from '../providers/types.js';
+import { ACCOUNT_FILE, ATTACHMENT_DIR, authVerifierFor, getAccount, listAccounts, newProfileId, putAccount, readVault, removeAccount, SNAPSHOT_DIR, storageFor, writeVault, VAULT_FILE } from '../vault/store.js';
 import { CreateProfileSchema } from '../vault/types.js';
 import { requireUnlocked } from '../session/middleware.js';
 import { lockSession, unlockSession } from '../session/store.js';
@@ -274,6 +275,18 @@ profilesRouter.delete(
     const client = await storageFor(record);
     await client.remove(VAULT_FILE).catch(() => undefined);
     await client.remove(ACCOUNT_FILE).catch(() => undefined);
+    /*
+     * Snapshots and attachments hold ciphertext of the same vault: deleting a
+     * profile must not leave recoverable material behind on the user's drive.
+     */
+    for (const dir of [SNAPSHOT_DIR, ATTACHMENT_DIR]) {
+      const entries = await client.list(dir).catch(() => []);
+      for (const entry of entries) await client.remove(entry.path).catch(() => undefined);
+      await client.remove(dir).catch(() => undefined);
+    }
+    // Finally the `Nimbus` folder itself, so no empty shell is left on the drive.
+    await client.remove(parentPath(VAULT_FILE)).catch(() => undefined);
+    await client.dropRoot?.().catch(() => undefined);
     await removeAccount(profileId);
     dropSession(req.session.id);
     cache.clear();

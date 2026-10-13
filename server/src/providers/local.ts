@@ -132,6 +132,11 @@ class LocalClient implements CloudClient {
     await rm(toFs(this.profileId, path), { recursive: true, force: true });
   }
 
+  async dropRoot(): Promise<void> {
+    // The per-profile directory *is* the root for this provider.
+    await rm(resolve(ROOT, this.profileId), { recursive: true, force: true });
+  }
+
   async ensureDir(path: string): Promise<void> {
     await mkdir(toFs(this.profileId, path), { recursive: true });
   }

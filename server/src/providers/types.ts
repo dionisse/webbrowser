@@ -48,6 +48,13 @@ export interface CloudClient {
    * which case the API streams the bytes instead.
    */
   downloadUrl(path: string): Promise<string | null>;
+  /**
+   * Remove the provider-side root that holds this profile's files, so deleting
+   * a profile leaves no empty shell behind. Only meaningful for providers that
+   * own a per-profile root (the local store); remote drives implement it as a
+   * no-op.
+   */
+  dropRoot?(): Promise<void>;
 }
 
 export type AuthKind = 'none' | 'oauth2' | 'token' | 'basic';
