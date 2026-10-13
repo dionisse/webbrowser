@@ -1,0 +1,34 @@
+{
+  "name": "Nimbus — navigateur 100 % cloud",
+  "short_name": "Nimbus",
+  "description": "Navigateur cloud zero-knowledge : notes, mots de passe et cartes chiffrés sur votre propre espace (Google Drive, Proton Drive, Yandex Disk, OneDrive, WebDAV).",
+  "id": "/?source=pwa",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "orientation": "portrait-primary",
+  "background_color": "#0E0E0F",
+  "theme_color": "#0E0E0F",
+  "categories": ["productivity", "utilities"],
+  "dir": "ltr",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Coffre", "short_name": "Coffre", "url": "/?page=vault", "icons": [{ "src": "/icon.svg", "sizes": "any" }] },
+    { "name": "Espace cloud", "short_name": "Cloud", "url": "/?page=cloud", "icons": [{ "src": "/icon.svg", "sizes": "any" }] }
+  ]
+}
