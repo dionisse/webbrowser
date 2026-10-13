@@ -1,0 +1,157 @@
+/* ---------------------------------------------------------------------------
+   Nimbus design tokens
+   Derived from the reference design's published palette:
+   #0E0E0F · #393D43 · #58595A · #52392C · #B81908 · #D3D3D3 · #74A266
+   The intermediate shades are interpolations of those anchors, kept warm rather
+   than cold so surfaces read as material instead of void.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* --- Ink: near-black neutrals with a warm cast ------------------------ */
+  --ink-950: #08080a;
+  --ink-900: #0e0e0f; /* reference: app background */
+  --ink-880: #121214;
+  --ink-850: #17181b;
+  --ink-820: #1b1c20;
+  --ink-800: #1e2024;
+  --ink-750: #22242a;
+  --ink-700: #26282d;
+  --ink-650: #2a2c32;
+  --ink-600: #2e3037;
+  --ink-550: #33353c;
+
+  /* --- Slate: reference #393D43 and its neighbours ---------------------- */
+  --slate-600: #393d43; /* reference */
+  --slate-500: #45494f;
+  --slate-400: #58595a; /* reference: muted */
+
+  /* --- Mist: reference #D3D3D3 ------------------------------------------ */
+  --mist-100: #f7f7f7;
+  --mist-200: #ededed;
+  --mist-300: #d3d3d3; /* reference: body text */
+  --mist-400: #b9bbbf;
+  --mist-500: #a9abaf;
+  --mist-600: #8e9095;
+  --mist-700: #6e7075;
+  --mist-800: #5f6165;
+
+  /* --- Ember: reference #B81908 ----------------------------------------- */
+  --ember-700: #7e1206;
+  --ember-600: #b81908; /* reference: primary */
+  --ember-500: #d42a15;
+  --ember-400: #f0644f;
+  --ember-300: #f79483;
+  --ember-tint: rgba(184, 25, 8, 0.14);
+  --ember-tint-strong: rgba(184, 25, 8, 0.24);
+  --ember-glow: rgba(184, 25, 8, 0.32);
+
+  /* --- Clay: reference #52392C ------------------------------------------ */
+  --clay-800: #2a1e17;
+  --clay-700: #3a2a20;
+  --clay-600: #52392c; /* reference */
+  --clay-400: #8a6a55;
+  --clay-300: #d2a98c;
+  --clay-tint: rgba(82, 57, 44, 0.4);
+
+  /* --- Sage: reference #74A266 ------------------------------------------ */
+  --sage-600: #5c8251;
+  --sage-500: #74a266; /* reference */
+  --sage-400: #8fbe80;
+  --sage-300: #b3d3a8;
+  --sage-tint: rgba(116, 162, 102, 0.16);
+
+  /* --- Semantic aliases -------------------------------------------------- */
+  --bg: var(--ink-900);
+  --bg-sunken: var(--ink-950);
+  --surface-1: var(--ink-850);
+  --surface-2: var(--ink-800);
+  --surface-3: var(--ink-750);
+  --surface-hover: var(--ink-820);
+  --surface-raised: #1a1b1f;
+  --border: #232429;
+  --border-strong: var(--ink-650);
+  --border-subtle: #1c1d21;
+
+  --text-strong: var(--mist-100);
+  --text: var(--mist-300);
+  --text-secondary: var(--mist-500);
+  --text-tertiary: var(--mist-600);
+  --text-disabled: var(--mist-800);
+
+  --accent: var(--ember-600);
+  --accent-hover: var(--ember-500);
+  --accent-text: var(--ember-400);
+  --accent-contrast: #fff6f4;
+
+  --ok: var(--sage-500);
+  --ok-text: var(--sage-400);
+  --ok-tint: var(--sage-tint);
+  --warn: #d8a13a;
+  --warn-text: #e8bb63;
+  --warn-tint: rgba(216, 161, 58, 0.16);
+  --danger: var(--ember-600);
+  --danger-text: var(--ember-400);
+  --danger-tint: var(--ember-tint);
+
+  /* --- Radius ------------------------------------------------------------ */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+  --r-2xl: 34px;
+  --r-pill: 999px;
+
+  /* --- Spacing ----------------------------------------------------------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+  --s-9: 56px;
+  --s-10: 72px;
+
+  /* --- Typography -------------------------------------------------------- */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --fs-micro: 10.5px;
+  --fs-tiny: 11.5px;
+  --fs-small: 12.5px;
+  --fs-body: 13.5px;
+  --fs-md: 14.5px;
+  --fs-lg: 16px;
+  --fs-xl: 19px;
+  --fs-2xl: 24px;
+  --fs-3xl: 30px;
+  --fs-4xl: 38px;
+
+  --tracking-display: -0.03em;
+  --tracking-tight: -0.015em;
+  --tracking-micro: 0.07em;
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 120ms;
+  --t-base: 180ms;
+  --t-slow: 280ms;
+
+  /* --- Elevation --------------------------------------------------------- */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.42);
+  --shadow-3: 0 18px 48px rgba(0, 0, 0, 0.55);
+  --shadow-4: 0 32px 90px rgba(0, 0, 0, 0.62);
+  --ring-accent: 0 0 0 3px var(--ember-tint-strong);
+
+  /* --- Layout ------------------------------------------------------------ */
+  --rail-w: 62px;
+  --sidebar-w: 288px;
+  --topbar-h: 52px;
+  --tabstrip-h: 40px;
+  --mobile-tab-h: 66px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
